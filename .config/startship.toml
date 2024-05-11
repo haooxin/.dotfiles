@@ -2,7 +2,8 @@
 
 add_newline = false
 command_timeout = 1000
-format = """$os$username$hostname$kubernetes$directory$git_branch$git_status"""
+format = """$os$username$hostname$kubernetes$directory$git_branch$git_status
+[└─>](bold green) """
 
 # Drop ugly default prompt characters
 [character]
@@ -14,10 +15,10 @@ format = '[$symbol](bold white) '
 disabled = false
 
 [os.symbols]
-Windows = ' '
-Arch = '󰣇 '
-Ubuntu = ' '
-Macos = '󰀵 '
+Windows = ''
+Arch = '󰣇'
+Ubuntu = ''
+Macos = '󰀵'
 
 [username]
 style_user = 'white bold'
