@@ -30,11 +30,6 @@ sudo apt install zsh
 sudo dnf install zsh
 ```
 
-### For macOS:
-```bash
-brew install zsh
-```
-
 ## Step 2: Set ZSH as Default Shell
 ```bash
 chsh -s $(which zsh)
@@ -63,7 +58,34 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 ```
 
-## Step 7.1: Configure .zshrc File
+## Step 7: Install EZA
+[EZA - A modern, maintained replacement for ls](https://eza.rocks/)
+
+### Debian and Ubuntu
+Eza is available from [deb.gierens.de](http://deb.gierens.de/). The GPG public key is in this repo under [deb.asc](https://eza.rocks/deb.asc).
+First make sure you have the `gpg` command, and otherwise install it via:
+
+```
+sudo apt update
+sudo apt install -y gpg
+```
+
+Then install eza via:
+
+```
+sudo mkdir -p /etc/apt/keyrings
+wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
+echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | sudo tee /etc/apt/sources.list.d/gierens.list
+sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
+sudo apt update
+sudo apt install -y eza
+```
+
+### Fedora
+Fedora support is in the works.
+https://bugzilla.redhat.com/show_bug.cgi?id=2238264
+
+## Step 8.1: Configure .zshrc File
 Open the configuration file `.zshrc` in an editor:
 ```bash
 nano ~/.zshrc
@@ -84,20 +106,20 @@ Ensure that the initialization of `zsh-syntax-highlighting` plugin is at the end
 source ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 ```
 
-## Step 7.2: Fetch and Apply Dotfiles from My GitHub
+## Step 8.2: Fetch and Apply Dotfiles from My GitHub
 Clone my dotfiles repository from GitHub to the /tmp directory and apply the settings:
 ```bash
 git clone https://github.com/haooxin/.dotfiles.git /tmp/dotfiles
 ```
 Move all .dotfiles to your home directory.
 
-## Step 8: Reload Configuration
+## Step 9: Reload Configuration
 Apply the changes by reloading the configuration file:
 ```bash
 source ~/.zshrc
 ```
 
-## Step 9: Verification
+## Step 10: Verification
 Check if all components are working properly:
 - Open the terminal and see if Starship is displaying its prompt.
 - Start typing commands to see suggestions from `zsh-autosuggestions`.
